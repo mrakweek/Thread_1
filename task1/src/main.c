@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 
     long long local_hits = 0;
 
-    double start_time = MPI_Wtime(); // старт таймера
+    double start_time = MPI_Wtime();
 
     for (long long i = 0; i < local_n; ++i) {
         double x = (double)rand_r(&seed) / (double)RAND_MAX * 2.0 - 1.0;
@@ -44,12 +44,11 @@ int main(int argc, char *argv[]) {
     long long global_hits = 0;
     MPI_Reduce(&local_hits, &global_hits, 1, MPI_LONG_LONG, MPI_SUM, 0, MPI_COMM_WORLD);
 
-    double end_time = MPI_Wtime(); // конец таймера
+    double end_time = MPI_Wtime();
     double elapsed = end_time - start_time;
 
     if (my_rank == 0) {
         double pi_est = 4.0 * (double)global_hits / (double)total_trials;
-        // вывод в CSV формате: processes,trials,hits,pi,time
         printf("%d,%lld,%lld,%.6f,%.6f\n", comm_sz, total_trials, global_hits, pi_est, elapsed);
     }
 
