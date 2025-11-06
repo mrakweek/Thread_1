@@ -12,4 +12,4 @@
 
 ## График эффективности
 
-![Эффективность](lab1/task1/result/EFFICIENCY.PNG)
+![Эффективность](task1/result/EFFICIENCY.PNG)
