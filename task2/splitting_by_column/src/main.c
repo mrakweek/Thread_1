@@ -10,10 +10,8 @@ int main(int argc, char *argv[]) {
     MPI_Comm_size(MPI_COMM_WORLD, &comm_sz);
     MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
 
-    // Размер матрицы
     int N = (argc > 1) ? atoi(argv[1]) : 1600;
 
-    // Выделяем память для локальной части матрицы
     int local_cols = N / comm_sz;
     if (my_rank < N % comm_sz) local_cols++;  // распределяем остаток
 
@@ -21,10 +19,9 @@ int main(int argc, char *argv[]) {
     double *x = malloc(N * sizeof(double));
     double *y_local = malloc(N * sizeof(double));
 
-    // Инициализация данных
-    if (my_rank == 0) {
+     if (my_rank == 0) {
         for (int i = 0; i < N; i++)
-            x[i] = 1.0;  // вектор единиц
+            x[i] = 1.0;
     }
     MPI_Bcast(x, N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
@@ -32,11 +29,9 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < N * local_cols; i++)
         A[i] = rand() % 10;
 
-    // Таймер
     MPI_Barrier(MPI_COMM_WORLD);
     double t_start = MPI_Wtime();
 
-    // Умножение матрицы на вектор (разбиение по столбцам)
     for (int i = 0; i < N; i++)
         y_local[i] = 0.0;
 
@@ -46,7 +41,6 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Сбор результата
     double *y = NULL;
     if (my_rank == 0)
         y = malloc(N * sizeof(double));
@@ -55,7 +49,6 @@ int main(int argc, char *argv[]) {
 
     double t_end = MPI_Wtime();
 
-    // Вывод: размер, число процессов, время
     if (my_rank == 0)
         printf("%d %d %lf\n", N, comm_sz, t_end - t_start);
 
