@@ -30,9 +30,9 @@
 
 ![Время выполнения](task2/splitting_by_lines/result/time_proc.PNG)
 
-## График зависимости времени от числа испытаний
+## График зависимости времени от Размера матрциы
 
-![Время выполнения](task2/splitting_by_lines/result/size.PNG)
+![Время выполнения](task2/splitting_by_lines/result/time_size.PNG)
 
 ## График эффективности
 
