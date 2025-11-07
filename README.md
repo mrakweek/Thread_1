@@ -41,3 +41,21 @@
 ## График ускорения
 
 ![Эффективность](task2/splitting_by_lines/result/boost.PNG)
+
+# Разбиение по столбцам
+
+## График зависимости времени от числа процессов
+
+![Время выполнения](task2/splitting_by_column/result/time_proc.PNG)
+
+## График зависимости времени от Размера матрциы
+
+![Время выполнения](task2/splitting_by_column/result/time_size.PNG)
+
+## График эффективности
+
+![Эффективность](task2/splitting_by_column/result/eff.PNG)
+
+## График ускорения
+
+![Эффективность](task2/splitting_by_column/result/boost.PNG)
